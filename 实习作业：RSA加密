@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+long long f;
+void exgcd(long long a,long long b,long long &x,long long &y)
+{
+    if(b==0)
+    {
+        x=1;
+        y=0;
+        f=a;
+    }
+    else
+    {
+        exgcd(b,a%b,x,y);
+        long long t=x;
+        x = y;
+        y = t - (a /b )* y;
+    }
+
+}
+int findd(long long a,long long b)
+{
+    long long x,y;
+    exgcd(a,b,x,y);
+    x=x/f;
+    long long r=b/f;
+    x=(x%r+r)%r;
+    return x;
+}
+int main()
+{
+    long long p,q,e,n,n1,d;
+    long long ming,a=1,b=1;
+    cout<<"请任选两个四位的素数和一个三位或者四位的素数"<<endl;
+    cin>>p>>q>>e;
+    n=p*q;
+    n1=(p-1)*(q-1);
+    d=findd(e,n1);
+    cout<<"公钥(n,e)为"<<"("<<n <<","<<e<<")"<<endl;
+    cout<<"私钥(n,d)为"<<"("<<n <<","<<d<<")"<<endl;
+    cout<<"请输入要加密的内容"<<endl;
+    cin>>ming;
+    for(int i=1;i<=e;i++)
+    {
+        a=a*ming%n;
+    }
+    cout<<"密文是"<<a<<endl;
+    for(int j=1;j<=d;j++)
+    {
+        b=b*a%n;
+    }
+    cout<<"解出的明文是"<<b<<endl;
+    return 0;
+}
+
