@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+int Cica(int m,int n);
+int main()
+{
+    int x=0,y=0,res2=0;
+    printf("Consecutive integer checking algorithm\n");
+    printf("Input two integers m,n m&n must >0\n");
+    scanf("%d %d",&x,&y);
+    res2=Cica(x,y);
+    printf("The result is %d\n",res2);
+    return 0;
+}
+int Cica(int m,int n)
+{
+    int t=0;
+    if(m<n)
+    {
+        t=m;
+    }
+    else t=n;
+    while(m%t!=0 || n%t!=0)
+    {
+        t=t-1;
+    }
+    return t;
+}
