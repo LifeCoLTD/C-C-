@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+void Sieve(int n);
+int main()
+{
+    int n;
+    printf("sieve of Eratosthenes\n");
+    printf("Please input a integer a, and a must >2\n");
+    scanf("%d",&n);
+    printf("\n");
+    Sieve(n);
+}
+void Sieve(int n)
+{
+    int i,j,p,k;
+    int a[1000],b[1000];
+    memset(b,0,sizeof(b));
+    for(p=2;p<=n;p++)
+    {
+        a[p]=p;
+    }
+    p=0;
+    for(p=2;p<=(int)sqrt(n);p++)
+    {
+        if(a[p]!=0) j=p*p;
+        while(j<=n)
+        {
+            a[j]=0;
+            j=j+p;
+        }
+        i=0;
+        p=0;
+        for(p=2;p<=n;p++)
+        {
+            if(a[p]!=0)
+            {
+                b[i]=a[p];
+                i++;
+            }
+        }
+        for(k=0;;k++)
+        {
+            if(b[k]!=0)
+                printf("%d\n",b[k]);
+            else break;
+        }
+    }
+}
