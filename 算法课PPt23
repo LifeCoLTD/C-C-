@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+int MinDistance(int a[]);
+int main()
+{
+    int a[10];
+    int i,dmin;
+    printf("Algorithm of MinDistance\n");
+    printf("Input ten numbers\n");
+    for(i=0;i<10;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    dmin=MinDistance(a);
+    printf("The dmin is %d\n",dmin);
+    return 0;
+}
+int MinDistance(int a[])
+{
+    int length=0,i=0,j=0;
+    int dmin=100000000;
+    length=sizeof(a);
+    for(i=0;i<=length;i++)
+    {
+        for(j=0;j<=length;j++)
+        {
+            if(i!=j && abs(a[i]-a[j])<dmin)
+                dmin=abs(a[i]-a[j]);
+        }
+        return dmin;
+    }
+}
