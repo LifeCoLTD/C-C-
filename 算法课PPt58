@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    printf("Sequential Search\n");
+    int N,i,res1,K;
+    int *a;
+    printf("Please input the length of the array\n");
+    scanf("%d",&N);
+    a=(int *) malloc(N * sizeof(int));
+    printf("Please input the array\n");
+    for(i=0;i<N;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("Please input a search key K\n");
+    scanf("%d",&K);
+    res1=ss(a,K,N);
+    if(res1!=(-1))
+    {
+        printf("Find the K and K is %d\n",res1);
+    }
+    else printf("Can't find the K in this array\n");
+    free(a);
+    return 0;
+}
+int ss(int a[],int K,int n)
+{
+    int i=0;
+    while(i<n && a[i]!=K)
+    {
+        i++;
+    }
+    if(i<n)
+    {
+        if(K>0)
+            return i+1;
+        else return -(i+1);
+    }
+    else return -1;
+}
